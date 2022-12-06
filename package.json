@@ -1,0 +1,28 @@
+{
+  "name": "parcel-reproductions",
+  "packageManager": "yarn@3.3.0",
+  "workspaces": [
+    "packages/*"
+  ],
+  "dependencies": {
+    "issue-reproduction-library": "workspace:^"
+  },
+  "scripts": {
+    "build": "parcel build --no-source-maps src/index.ts",
+    "rebuild-everything": "rm -rf dist packages/issue-reproduction-library/dist && bash -c 'pushd packages/issue-reproduction-library && yarn build && popd && yarn build'"
+  },
+  "targets": {
+    "latest": {
+      "engines": {
+        "browsers": "last 1 chrome version"
+      }
+    }
+  },
+  "devDependencies": {
+    "@parcel/packager-ts": "nightly",
+    "@parcel/transformer-typescript-types": "nightly",
+    "parcel": "nightly",
+    "prettier": "^2.8.0",
+    "typescript": ">=3.0.0"
+  }
+}
